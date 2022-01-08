@@ -15,6 +15,20 @@ function searchWeather(x) {
         console.log(response);
         console.log(response.name)
 
+        $("#cityName").text("City: " + response.name);
+        var temp = $("<p>");
+        temp.text("Temperature: " + response.main.temp + " F");
+        $("#cityInfo").append(temp);
+        var humidity = $("<p>");
+        humidity.text("humidity: " + response.main.humidity + " %");
+        $("#cityInfo").append(humidity);
+        var wind = $("<p>");
+        wind.text("Temperature: " + response.wind.speed + " MPH");
+        $("#cityInfo").append(wind);
+        var uv = $("<p>");
+        uv.text("UV");
+        $("#cityInfo").append(uv);
+
     })
   }
 
@@ -29,10 +43,8 @@ function searchWeather(x) {
 // to make the list of cities
 
 function addCity(x){
-      var newLi = document.createElement("li");
+      var newLi = document.createElement("button");
       newLi.text(x);
-      $("#cities").appendchild("newLi");
-      console.log("newLi");
-
-  } 
- 
+      $("#Cities").add.text("addCity");
+  addCity();
+  }
