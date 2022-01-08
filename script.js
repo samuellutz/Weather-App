@@ -28,6 +28,7 @@ function searchWeather(x) {
       uv.text("UV");
       $("#cityInfo").append(uv);
       
+      addCity(response.name);
   })
 }
 // searches city
