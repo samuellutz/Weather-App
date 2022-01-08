@@ -39,7 +39,13 @@ $("#search").on("click", function(event){
   console.log("input: " + input);
   searchWeather(input);
 });
-
+// searches previous cities at button press.
+$(".cityButton").on("click", function(event){
+  event.preventDefault();
+  var btnVal = this.text;
+  console.log(btnVal);
+});
+// function for adding cities to list
 function addCity(x){
     var newLi = $("<li>");
     // newLi.text(x);
@@ -56,13 +62,6 @@ function addCity(x){
   localStorage.setItem("Number", container.length);
 }
 
-$(".cityButton").on("click", function(event){
-  event.preventDefault();
-  var btnVal = this.text;
-  console.log(btnVal);
-
-});
-
 function pageOpen(){
   var num = localStorage.getItem("Number");
   for(var i = 0; i < num; i++){
@@ -71,8 +70,7 @@ function pageOpen(){
 
   for(var i = 0; i < container.length; i++){
     var li = $("<li>");
-    // newLi.text(x);
-    $("#cities").append(li);
+       $("#cities").append(li);
     var ogButton = $("<button>");
     ogButton.text(container[i]);
     ogButton.addClass("btn btn-secondary cityButton mb-2");
