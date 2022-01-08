@@ -14,6 +14,7 @@ function searchWeather(x) {
   }).then(function(response){
       console.log(response);
       console.log(response.name)
+      $("#cityInfo").text("");
       $("#cityName").text("City: " + response.name);
       var temp = $("<p>");
       temp.text("Temperature: " + response.main.temp + " F");
