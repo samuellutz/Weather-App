@@ -12,7 +12,9 @@ function searchWeather(x) {
     dataType: "json",
     // error handling
     error: function(e){
-        alert("Error-Connection");
+      $("#cityName").text("Error: this City does not exist.");
+      $(".forecast").attr("style", "display: none");
+      return;
     }
   // outputs weather data to the city section
   }).then(function(response){
@@ -34,7 +36,7 @@ function searchWeather(x) {
       uv.text("UV");
       $("#cityInfo").append(uv);
       
-      addCity(response.name);
+     
       fiveDay(response.name);
   })
   
@@ -48,6 +50,7 @@ searchButton.click(function(event){
   var input = $("#city").val();
   console.log("input: " + input);
   searchWeather(input);
+  addCity(input);
 });
 // searches previous cities at button press.
 searchCity.click(function(event){
@@ -192,4 +195,4 @@ function fiveDay(name){
       $("#5").append(temp5);
       $("#5").append(humidity5);
   });
-};
+}
