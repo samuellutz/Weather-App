@@ -43,6 +43,7 @@ function searchWeather(x) {
 // searches city
 
 searchButton.click(function(event){
+  save = true;
   event.preventDefault();
   var input = $("#city").val();
   console.log("input: " + input);
@@ -55,6 +56,17 @@ searchCity.click(function(event){
   console.log(btnVal);
   searchWeather(this.text);
 });
+// clear button
+$("#clear").on("click", function (event) {
+  event.preventDefault();
+  container.length = 0;
+  localStorage.clear();
+  $("#cities button").remove();
+  $(".forecast").attr("style", "display: none;");
+  $("#cityName").text("City: ");
+  $("#cityInfo").empty();
+});
+
 // function for adding cities to list
 function addCity(x){
     var newLi = $("<li>");
@@ -62,7 +74,7 @@ function addCity(x){
     $("#cities").append(newLi);
     var button = $("<button>");
     button.text(x);
-    button.addClass("btn btn-secondary cityButton mb-2");
+    button.addClass("btn btn-secondary cityButton w-100 border-top border-dark");
     button.attr("type", "button");
     $("#cities").append(button);
     for(var i = 0; i < container.length; i++){
@@ -81,22 +93,24 @@ $("#cities").on("click", "button", function (event) {
   searchWeather(btnText);
 });
 
-function pageOpen(){
+function pageOpen() {
+  $(".forecast").attr("style", "display: none;");
   var num = localStorage.getItem("Number");
-  for(var i = 0; i < num; i++){
+  for (var i = 0; i < num; i++) {
     container.push(localStorage.getItem(i));
   }
-
-  for(var i = 0; i < container.length; i++){
-    var li = $("<li>");
-       $("#cities").append(li);
+  if (container.length > 0) {
+    search(container[0]);
+  }
+  for (var i = 0; i < container.length; i++) {
     var ogButton = $("<button>");
     ogButton.text(container[i]);
-    ogButton.addClass("btn btn-secondary cityButton mb-2");
+    ogButton.addClass("btn btn-secondary cityButton w-100 border-top border-dark");
     ogButton.attr("type", "button");
-    li.append(ogButton);
+    $("#cities").append(ogButton);
   }
 }
+pageOpen();
 //  getting five day forcast
 
 function fiveDay(name){
