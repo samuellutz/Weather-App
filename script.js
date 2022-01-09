@@ -14,6 +14,7 @@ function searchWeather(x) {
   }).then(function(response){
       console.log(response);
       console.log(response.name)
+      $(".forecast").empty("");
       $("#cityInfo").text("");
       $("#cityName").text("City: " + response.name);
       var temp = $("<p>");
@@ -65,6 +66,7 @@ function pageOpen(){
   var num = localStorage.getItem("Number");
   for(var i = 0; i < num; i++){
     container.push(localStorage.getItem(i));
+    $(".forecast").attr("style", "display: none;");
   }
 
   for(var i = 0; i < container.length; i++){
