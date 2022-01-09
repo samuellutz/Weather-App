@@ -72,9 +72,8 @@ $("#clear").on("click", function (event) {
 
 // function for adding cities to list
 function addCity(x){
-    var newLi = $("<li>");
+  container.push(x);
     // newLi.text(x);
-    $("#cities").append(newLi);
     var button = $("<button>");
     button.text(x);
     button.addClass("btn btn-secondary cityButton w-100 border-top border-dark");
