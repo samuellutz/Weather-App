@@ -1,5 +1,6 @@
 var container = [];
-
+var searchButton = $("#search");
+var searchCity = $(".cityButton");
 
 function searchWeather(x) {
 
@@ -7,7 +8,7 @@ function searchWeather(x) {
   
   $.ajax({
     type: "GET",
-    url: "http://api.openweathermap.org/data/2.5/weather?q=" + x + "&appid=ebdcfef8b5f11a300f888ec06cffdf1c&units=imperial",
+    url: "http://api.openweathermap.org/data/2.5/weather?q=" + x + "&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
     dataType: "json",
     // error handling
     error: function(e){
@@ -36,18 +37,21 @@ function searchWeather(x) {
       addCity(response.name);
   })
 }
+
 // searches city
-$("#search").on("click", function(event){
+
+searchButton.click(function(event){
   event.preventDefault();
   var input = $("#city").val();
   console.log("input: " + input);
   searchWeather(input);
 });
 // searches previous cities at button press.
-$(".cityButton").on("click", function(event){
-  event.preventDefault();
+searchCity.click(function(event){
+  // event.preventDefault();
   var btnVal = this.text;
   console.log(btnVal);
+  searchWeather(this.text);
 });
 // function for adding cities to list
 function addCity(x){
@@ -77,6 +81,7 @@ function pageOpen(){
     var ogButton = $("<button>");
     ogButton.text(container[i]);
     ogButton.addClass("btn btn-secondary cityButton mb-2");
+    ogButton.attr("type", "button");
     li.append(ogButton);
   }
 }
@@ -86,7 +91,7 @@ function fiveDay(name){
 
 $.ajax({
   type: "GET",
-  url: "http://api.openweathermap.org/data/2.5/weather?q=" + name + "&appid=ebdcfef8b5f11a300f888ec06cffdf1c&units=imperial",
+  url: "api.openweathermap.org/data/2.5/forecast?q=" + name +"&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
   dataType: "JSON",
 
 }).then(function(response){
@@ -96,8 +101,8 @@ $.ajax({
   date.text(response.list[3].dt_txt);
   temp.text("Temp: " + response.list[3].main.temp_max + " F");
   humidity.text("temp:" + response.list[3].main.humidity);
-  $("#1").append(date);
-  $("#1").append(temp);
-  $("#1").append(humidity);
-});
+  $("#1").append(<div class="text-light"> + "<p>" + date + "</p>" + </div>);
+  $("#1").append(<div class="text-light"> + "<p>" + Temp + "</p>" + </div>);
+  $("#1").append(<div class="text-light"> + "<p>" + humidity + "</p>"+ </div>);
+  });
 }
