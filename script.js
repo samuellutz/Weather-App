@@ -63,13 +63,23 @@ function addCity(x){
     var button = $("<button>");
     button.text(x);
     button.addClass("btn btn-secondary cityButton mb-2");
-    newLi.append(button);
-    container.push(x);
+    button.attr("type", "button");
+    $("#cities").append(button);
     for(var i = 0; i < container.length; i++){
     localStorage.setItem(i, container[i]);
   }
   localStorage.setItem("Number", container.length);
 }
+// function for created buttons to search
+$("#cities").on("click", "button", function (event) {
+  save = true;
+  event.preventDefault();
+  $("#cityInfo").empty();
+  $(".forecast").empty();
+  var btnText = $(this).text();
+  // console.log("btn text: " + btnText);
+  searchWeather(btnText);
+});
 
 function pageOpen(){
   var num = localStorage.getItem("Number");
