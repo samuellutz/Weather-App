@@ -8,7 +8,7 @@ function searchWeather(x) {
   
   $.ajax({
     type: "GET",
-    url: "http://api.openweathermap.org/data/2.5/weather?q=" + x + "&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
+    url: "https://api.openweathermap.org/data/2.5/weather?q=" + x + "&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
     dataType: "json",
     // error handling
     error: function(e){
@@ -36,6 +36,7 @@ function searchWeather(x) {
       
       addCity(response.name);
   })
+  fiveDay();
 }
 
 // searches city
@@ -90,7 +91,7 @@ function pageOpen(){
 function fiveDay(name){
   $.ajax({
     type: "GET",
-    url: "http://api.openweathermap.org/data/2.5/weather?q=oakland&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
+    url: "https://api.openweathermap.org/data/2.5/weather?q=" + name + "&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
     dataType: "JSON",
 
 }).then(function(response){
