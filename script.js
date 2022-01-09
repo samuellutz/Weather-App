@@ -102,7 +102,7 @@ function pageOpen() {
     container.push(localStorage.getItem(i));
   }
   if (container.length > 0) {
-    search(container[0]);
+    searchWeather(container[0]);
   }
   for (var i = 0; i < container.length; i++) {
     var ogButton = $("<button>");
