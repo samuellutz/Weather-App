@@ -28,7 +28,7 @@ function searchWeather(x) {
       humidity.text("humidity: " + response.main.humidity + " %");
       $("#cityInfo").append(humidity);
       var wind = $("<p>");
-      wind.text("Temperature: " + response.wind.speed + " MPH");
+      wind.text("Wind Speed: " + response.wind.speed + " MPH");
       $("#cityInfo").append(wind);
       var uv = $("<p>");
       uv.text("UV");
@@ -88,21 +88,21 @@ function pageOpen(){
 //  getting five day forcast
 
 function fiveDay(name){
-
-$.ajax({
-  type: "GET",
-  url: "api.openweathermap.org/data/2.5/forecast?q=" + name +"&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
-  dataType: "JSON",
+  $.ajax({
+    type: "GET",
+    url: "http://api.openweathermap.org/data/2.5/weather?q=oakland&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
+    dataType: "JSON",
 
 }).then(function(response){
+  console.log("response: " + response.list[0].main.temp);
   var date = $("<p>");
   var temp = $("<p>");
   var humidity = $("<p>");
   date.text(response.list[3].dt_txt);
   temp.text("Temp: " + response.list[3].main.temp_max + " F");
   humidity.text("temp:" + response.list[3].main.humidity);
-  $("#1").append(<div class="text-light"> + "<p>" + date + "</p>" + </div>);
-  $("#1").append(<div class="text-light"> + "<p>" + Temp + "</p>" + </div>);
-  $("#1").append(<div class="text-light"> + "<p>" + humidity + "</p>"+ </div>);
+  $("#1").append("<p>" + (date) + "</p>");
+  $("#1").append("<p>" + (Temp) + "</p>");
+  $("#1").append("<p>" + (humidity) + "</p>");
   });
-}
+};
