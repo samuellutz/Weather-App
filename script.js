@@ -70,40 +70,46 @@ function addCity(x){
   localStorage.setItem("Number", container.length);
 }
 
-function pageOpen(){
-  var num = localStorage.getItem("Number");
-  for(var i = 0; i < num; i++){
-    container.push(localStorage.getItem(i));
-  }
+// function pageOpen(){
+//   var num = localStorage.getItem("Number");
+//   for(var i = 0; i < num; i++){
+//     container.push(localStorage.getItem(i));
+//   }
 
-  for(var i = 0; i < container.length; i++){
-    var li = $("<li>");
-       $("#cities").append(li);
-    var ogButton = $("<button>");
-    ogButton.text(container[i]);
-    ogButton.addClass("btn btn-secondary cityButton mb-2");
-    ogButton.attr("type", "button");
-    li.append(ogButton);
-  }
-}
+//   for(var i = 0; i < container.length; i++){
+//     var li = $("<li>");
+//        $("#cities").append(li);
+//     var ogButton = $("<button>");
+//     ogButton.text(container[i]);
+//     ogButton.addClass("btn btn-secondary cityButton mb-2");
+//     ogButton.attr("type", "button");
+//     li.append(ogButton);
+//   }
+// }
 //  getting five day forcast
 
-function fiveDay(name){
+function fiveDay(){
+  console.log("five day function hit");
+
   $.ajax({
     type: "GET",
-    url: "https://api.openweathermap.org/data/2.5/weather?q=" + name + "&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
+    url: "https://api.openweathermap.org/data/2.5/forecast?q=oakland&appid=1506795a9042438dd4635266f5cbd0eb&units=imperial",
     dataType: "JSON",
+  
+  }).then(function(response){
+    console.log("response: "+ response.list[0].main.temp);
+  
+   
 
-}).then(function(response){
-  console.log("response: " + response.list[0].main.temp);
+  
   var date = $("<p>");
   var temp = $("<p>");
   var humidity = $("<p>");
   date.text(response.list[3].dt_txt);
   temp.text("Temp: " + response.list[3].main.temp_max + " F");
   humidity.text("temp:" + response.list[3].main.humidity);
-  $("#1").append("<p>" + (date) + "</p>");
-  $("#1").append("<p>" + (Temp) + "</p>");
-  $("#1").append("<p>" + (humidity) + "</p>");
+  $("#1").append(date);
+  $("#1").append(temp);
+  $("#1").append(humidity);
   });
 };
