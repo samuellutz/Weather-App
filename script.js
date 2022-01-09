@@ -55,7 +55,6 @@ function addCity(x){
     button.addClass("btn btn-secondary cityButton mb-2");
     newLi.append(button);
     container.push(x);
-    console.log(container);
     for(var i = 0; i < container.length; i++){
     localStorage.setItem(i, container[i]);
   }
@@ -76,5 +75,25 @@ function pageOpen(){
     ogButton.addClass("btn btn-secondary cityButton mb-2");
     li.append(ogButton);
   }
-  console.log(container);
+}
+//  getting five day forcast
+
+function fiveDay(name){
+
+$.ajax({
+  type: "GET",
+  url: "http://api.openweathermap.org/data/2.5/weather?q=" + x + "&appid=ebdcfef8b5f11a300f888ec06cffdf1c&units=imperial",
+  dataType: "JSON",
+}).then(function(response){
+  var date = $("<p>");
+  var temp = $("<p>");
+  var humidity = $("<p>");
+  date.text(response.list[3].dt_txt);
+  temp.text("Temp: " + response.list[3].main.temp_max + " F");
+  humidity.text("temp:" + response.list[3].main.humidity);
+  $("#1").append(date);
+  $("#1").append(temp);
+  $("#1").append(humidity);
+  console.log(response);
+});
 }
