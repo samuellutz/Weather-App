@@ -2,6 +2,9 @@ var container = [];
 
 
 function searchWeather(x) {
+
+  $(".forecast").empty();
+  
   $.ajax({
     type: "GET",
     url: "http://api.openweathermap.org/data/2.5/weather?q=" + x + "&appid=ebdcfef8b5f11a300f888ec06cffdf1c&units=imperial",
@@ -14,7 +17,7 @@ function searchWeather(x) {
   }).then(function(response){
       console.log(response);
       console.log(response.name)
-      $(".forecast").empty("");
+      $(".forecast").attr("style", "display: inline-block");
       $("#cityInfo").text("");
       $("#cityName").text("City: " + response.name);
       var temp = $("<p>");
@@ -84,8 +87,9 @@ function fiveDay(name){
 
 $.ajax({
   type: "GET",
-  url: "http://api.openweathermap.org/data/2.5/weather?q=" + x + "&appid=ebdcfef8b5f11a300f888ec06cffdf1c&units=imperial",
+  url: "http://api.openweathermap.org/data/2.5/weather?q=" + name + "&appid=ebdcfef8b5f11a300f888ec06cffdf1c&units=imperial",
   dataType: "JSON",
+
 }).then(function(response){
   var date = $("<p>");
   var temp = $("<p>");
@@ -96,6 +100,5 @@ $.ajax({
   $("#1").append(date);
   $("#1").append(temp);
   $("#1").append(humidity);
-  console.log(response);
 });
 }
