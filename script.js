@@ -22,7 +22,10 @@ function searchWeather(x) {
       console.log(response.name)
       $(".forecast").attr("style", "display: inline-block");
       $("#cityInfo").text("");
+      var imgmain = $("<img>");
+      imgmain.attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
       $("#cityName").text("City: " + response.name);
+      $("#cityName").append(imgmain);
       var temp = $("<p>");
       temp.text("Temperature: " + response.main.temp + " F");
       $("#cityInfo").append(temp);
@@ -32,14 +35,31 @@ function searchWeather(x) {
       var wind = $("<p>");
       wind.text("Wind Speed: " + response.wind.speed + " MPH");
       $("#cityInfo").append(wind);
-      var uv = $("<p>");
-      uv.text("UV");
-      $("#cityInfo").append(uv);
+      
       
      
       fiveDay(response.name);
+      uvDisp(response.coord.lat,response.coord.lon)
   })
   
+}
+
+// uv function
+function uvDisp(lat,lon) {
+  url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=1506795a9042438dd4635266f5cbd0eb"
+fetch(url)
+.then(function (response){
+  return response.json()
+})
+.then(function (data){
+  console.log(data.current.uvi)
+  var uv = $("<p>");
+      uv.text("UV: " + data.current.uvi);
+      $("#cityInfo").append(uv);
+})
+.catch(function (error){
+  console.error(error)
+})
 }
 
 // searches city
@@ -66,7 +86,7 @@ $("#clear").on("click", function (event) {
   localStorage.clear();
   $("#cities button").remove();
   $(".forecast").attr("style", "display: none;");
-  $("#cityName").text("City: ");
+  $("#cityName").text("City:");
   $("#cityInfo").empty();
 });
 
@@ -123,6 +143,7 @@ function fiveDay(name){
     dataType: "JSON",
   
   }).then(function(response){
+    console.log(response);
     console.log("response: "+ response.list[0].main.temp);
   var date = $("<h5>");
   var temp = $("<p>");
