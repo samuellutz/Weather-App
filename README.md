@@ -13,6 +13,10 @@ includes 5 day forecast as well as previous searched cities button.
 
 * [See Live Site](#)
 
+![image](https://user-images.githubusercontent.com/91674571/148808067-5a78cdcf-d961-4d09-8832-92de69a39a6a.png)
+
+![weather app](https://user-images.githubusercontent.com/91674571/148808364-6bfb85b2-3428-4fb1-83e7-70215f8a8eca.gif)
+
 
 ## Authors
 
