@@ -55,16 +55,16 @@ fetch(url)
   console.log(data.current.uvi)
   var uv = $("<p>");
       uv.text("UV: " + data.current.uvi);
-      $("#cityInfo").append(uv);
-      console.log(uv.data);
   var  uvVal = parseFloat(data.current.uvi);
   uv.attr("class", "p-1 m-1")
   if (uvVal <=3.99) {
     uv.attr("style", "background-color: green;");
   } if (uvVal >=4 && uvVal <=7.99) {
     uv.attr("style", "background-color: yellow;");
-  }
+  }if (uvVal >= 8)
+  uv.attr("style", "background-color: red;");
       console.log(uvVal);
+      $("#cityInfo").append(uv);
 })
 
 .catch(function (error){
