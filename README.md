@@ -11,7 +11,7 @@ includes 5 day forecast as well as previous searched cities button.
 
 ## Deployed Link
 
-* [See Live Site](#)
+* [See Live Site](https://samuellutz.github.io/Weather-App/)
 
 ![image](https://user-images.githubusercontent.com/91674571/148808067-5a78cdcf-d961-4d09-8832-92de69a39a6a.png)
 
@@ -22,7 +22,7 @@ includes 5 day forecast as well as previous searched cities button.
 
 * **Samuel Lutz** 
 
-- [Link to Portfolio Site](#)
+- [Link to Portfolio Site](https://samuellutz.github.io/samuels-portfolio/)
 - [Link to Github](https://github.com/samuellutz)
 - [Link to LinkedIn](https://www.linkedin.com/in/samuel-lutz-77138020b/)
 
